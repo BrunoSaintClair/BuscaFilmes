@@ -1,5 +1,4 @@
 from django.shortcuts import render
-<<<<<<< HEAD
 from .models import Movie
 from .serializers import MovieSerializer
 from rest_framework.decorators import api_view
@@ -26,7 +25,3 @@ def getSimilarMoviesTo(request, name):
         movie = Movie.objects.filter(title=m)
         instances.append(MovieSerializer(movie, many=True).data)
     return Response({"similar movies" : instances}, status=status.HTTP_200_OK)
-=======
-
-# Create your views here.
->>>>>>> 47d5486 (:wrench: build: obtendo os dados dos filmes e criando app Movies)
