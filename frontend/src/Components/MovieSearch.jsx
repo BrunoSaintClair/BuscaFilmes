@@ -1,9 +1,10 @@
 import { useState } from "react";
 import api from "../Services/api";
 import "./css/MovieSearch.css"
+import { Link } from "react-router-dom";
 
 export default function MovieSearch() {
-    const [inputText, setInputText] = useState("---");
+    const [inputText, setInputText] = useState("");
     const [movies, setMovies] = useState([])
 
     async function getSimilarMovies(params) {
@@ -21,17 +22,18 @@ export default function MovieSearch() {
 
             {
                 movies.map((movie) => (
-                    <div key={movie[0].id} className="card">
-                        <div className="infos_1">
-                            <h2>{movie[0].title}</h2>
-                            <h4>{movie[0].genres}</h4>
+                    <Link key={movie[0].id} to={"movie/" + movie[0].title}>
+                        <div id="card">
+                            <div className="infos_1">
+                                <h2>{movie[0].title}</h2>
+                                <h4>{movie[0].genres}</h4>
+                            </div>
+                            <div className="infos_2">
+                                <h2>{movie[0].vote_average}</h2>
+                                <h3>{movie[0].runtime} min</h3>
+                            </div>
                         </div>
-                        <div className="infos_2">
-                            <h2>{movie[0].vote_average}</h2>
-                            <h3>{movie[0].runtime} min</h3>
-                        </div>
-                        
-                    </div>
+                    </Link>
                 ))
             }
 

@@ -31,7 +31,7 @@ form > button {
     padding: 4px;
 }
 
-.card {
+#card {
     background-color: red;
     border-radius: 12px;
     margin-bottom: 4vh;
