@@ -2,9 +2,9 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import App from './App.jsx'
-import Home from './Routes/Home.jsx'
+import MovieSearch from './Routes/MovieSearch.jsx'
 import Error404 from './Routes/Error404.jsx'
-import MoviePage from './Routes/MoviePage.jsx'
+import MovieDetails from './Routes/MovieDetails.jsx'
 
 const router = createBrowserRouter([
   {
@@ -14,11 +14,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />
+        element: <MovieSearch />
       },
       {
         path: "/movie/:title",
-        element: <MoviePage />
+        element: <MovieDetails />
       }
     ]
   }
