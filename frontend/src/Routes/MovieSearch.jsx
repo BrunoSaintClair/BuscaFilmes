@@ -5,11 +5,16 @@ import api from "../Services/api";
 export default function MovieSearch() {
     const [inputText, setInputText] = useState("");
     const [movies, setMovies] = useState([])
+    const [history, setHistory] = useState([])
     const [showSimilarityText, setShowSimilarityText] = useState(false);
 
     async function getSimilarMovies(movie_title) {
         const response = await api.get("movies/similar-to/" + movie_title);
         setMovies(response.data['similar movies']);
+        
+        const historyArray = Object.values(response.data['history']);
+        setHistory(historyArray);
+        
         setShowSimilarityText(true);
     }
 
@@ -26,7 +31,6 @@ export default function MovieSearch() {
                 </div>
             </form>
 
-    
             {showSimilarityText && <p className="text-white font-semibold text-lg">*Ordenado pela similaridade</p>}
 
             {
@@ -45,6 +49,19 @@ export default function MovieSearch() {
                     </Link>
                 ))
             }
+
+            {history.length > 0 && (
+                <div className="mb-6">
+                    <ul>
+                        <p className="text-white font-semibold text-lg">Histórico: </p>
+                        {history.map((item, index) => (
+                            <Link key={index} to={"movie/" + item}>
+                                <p className="text-white border-b-2 border-sky-500 w-24 mx-auto hover:-translate-y-1 hover:scale-110 hover:bg-sky-600 duration-200  my-2 rounded">{item}</p>
+                            </Link>
+                        ))}
+                    </ul>
+                </div>
+            )}
 
         </div>
     );
